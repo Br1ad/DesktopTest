@@ -7,6 +7,7 @@ public class CharacterControl : MonoBehaviour
     public static float gravity = 20f;
     private Vector3 moveDir = Vector3.zero;
     private CharacterController controller;
+    [SerializeField] bool isInUncrouchableTrigger = false;
 
     void Start()
     {
@@ -27,7 +28,11 @@ public class CharacterControl : MonoBehaviour
             }
             else 
             {
-                controller.height = 2.0f;
+                if (!isInUncrouchableTrigger)
+                {
+                    controller.height = 2.0f;
+                }
+                else controller.height = 1.2f;
             } 
         }
 
@@ -39,5 +44,21 @@ public class CharacterControl : MonoBehaviour
         moveDir.y = moveDir.y - gravity * Time.deltaTime;
 
         controller.Move(moveDir * Time.deltaTime);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "UnCrouchableTrigger")
+        {
+            isInUncrouchableTrigger = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "UnCrouchableTrigger")
+        {
+            isInUncrouchableTrigger = false;
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Crate
   - Switch
+  - UnCrouchableTrigger
   layers:
   - Default
   - TransparentFX
