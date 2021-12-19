@@ -24,15 +24,15 @@ public class CharacterControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                controller.height = 1.2f;
+                Crouch();
             }
             else 
             {
                 if (!isInUncrouchableTrigger)
                 {
-                    controller.height = 2.0f;
+                    UnCrouch();
                 }
-                else controller.height = 1.2f;
+                else Crouch();
             } 
         }
 
@@ -46,6 +46,7 @@ public class CharacterControl : MonoBehaviour
         controller.Move(moveDir * Time.deltaTime);
     }
 
+    // Проверка на триггер неприседаемости
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "UnCrouchableTrigger")
@@ -60,5 +61,19 @@ public class CharacterControl : MonoBehaviour
         {
             isInUncrouchableTrigger = false;
         }
+    }
+
+    void Crouch()
+    {
+        controller.height = 1.2f;
+        speed = 3.5f;
+        jumpSpeed = 5.5f;
+    }
+
+    void UnCrouch()
+    {
+        controller.height = 2f;
+        speed = 4f;
+        jumpSpeed = 8f;
     }
 }
