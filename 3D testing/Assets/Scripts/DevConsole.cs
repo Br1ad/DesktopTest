@@ -91,4 +91,12 @@ public class DevConsole : MonoBehaviour
             Destroy(crates[i]);
         }
     }
+
+    // Shortcuts:
+    public void ScSetSpeed() => inputFieldUI.text = "setspeed "; 
+    public void ScSetJump() => inputFieldUI.text = "setjump ";
+    public void ScSetGravity() => inputFieldUI.text = "setgravity ";
+    public void ScSetDefault() => inputFieldUI.text = "setdefault";
+    public void ScCreateBox() => inputFieldUI.text = "createbox ";
+    public void ScDeleteAllBoxes() => inputFieldUI.text = "deleteallbox";
 }
